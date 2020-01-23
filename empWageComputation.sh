@@ -12,21 +12,26 @@ MAX_HOURS_IN_MONTH=100;
 totalEmployeeHours=0;
 totalWorkingDays=0;
 
+function getWorkingHours() {
+	case $1 in
+   	$IS_FULL_TIME )
+      	employeeHours=8
+         ;;
+      $IS_PART_TIME )
+         employeeHours=4
+         ;;
+      * )
+         employeeHours=0
+         ;;
+	esac
+	echo $employeeHours
+}
+
 while [[ $totalEmployeeHours -lt $MAX_HOURS_IN_MONTH && $totalWorkingDays -lt $WORKING_DAYS_PER_MONTH ]]
 do
 	((totalWorkingDays++))
-	employeeCheck=$((RANDOM%3));
-	case $employeeCheck in
-		$IS_FULL_TIME )
-			employeeHours=8
-			;;
-		$IS_PART_TIME )
-			employeeHours=4
-			;;
-		* )
-			employeeHours=0
-			;;
-	esac
-	totalEmployeeHours=$(($totalEmployeeHours + $employeeHours))
+	workHours="$( getWorkingHours $((RANDOM%3)) )"
+	totalEmployeeHours=$(($totalEmployeeHours + $workHours))
 done
-	totalSalary=$(($totalEmployeeHours*$EMPLOYEE_RATE_PER_HOUR));
+
+totalSalary=$(($totalEmployeeHours*$EMPLOYEE_RATE_PER_HOUR));
