@@ -27,11 +27,19 @@ function getWorkingHours() {
 	echo $employeeHours
 }
 
+function calculateDailyWage() {
+	local workHours=$1
+	wage=$((workHours*EMPLOYEE_RATE_PER_HOUR))
+	echo $wage
+}
+
 while [[ $totalEmployeeHours -lt $MAX_HOURS_IN_MONTH && $totalWorkingDays -lt $WORKING_DAYS_PER_MONTH ]]
 do
 	((totalWorkingDays++))
 	workHours="$( getWorkingHours $((RANDOM%3)) )"
 	totalEmployeeHours=$(($totalEmployeeHours + $workHours))
+	employeeDailyWage[$totalWorkingDays]="$( calculateDailyWage $workHours )"
 done
 
-totalSalary=$(($totalEmployeeHours*$EMPLOYEE_RATE_PER_HOUR));
+totalSalary="$( calculateDailyWage $totalEmployeeHours )"
+echo "Daily Wage " ${employeeDailyWage[@]}
