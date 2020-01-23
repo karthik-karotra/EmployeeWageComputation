@@ -1,4 +1,5 @@
-#!/bin/bash -x 
+#!/bin/bash -x
+declare -A employeeDailyWage 
 echo "Hello Employee"
 
 #CONSTANT
@@ -38,8 +39,9 @@ do
 	((totalWorkingDays++))
 	workHours="$( getWorkingHours $((RANDOM%3)) )"
 	totalEmployeeHours=$(($totalEmployeeHours + $workHours))
-	employeeDailyWage[$totalWorkingDays]="$( calculateDailyWage $workHours )"
+	employeeDailyWage[Day" $totalWorkingDays"]="$( calculateDailyWage $workHours )"
 done
 
 totalSalary="$( calculateDailyWage $totalEmployeeHours )"
 echo "Daily Wage " ${employeeDailyWage[@]}
+echo "All Keys " ${!employeeDailyWage[@]}
