@@ -3,15 +3,15 @@ echo "Hello Employee"
 
 #CONSTANT
 IS_PRESENT=1;
-EMP_RATE_PER_HR=20;
-EMP_HRS=8;
+EMPLOYEE_RATE_PER_HOUR=20;
+EMPLOYEE_HOURS=8;
 
 #VARIABLE
 randomCheck=$((RANDOM%2));
 
 if [ $IS_PRESENT -eq $randomCheck ];
 then
-	salary=$(($EMP_HRS*$EMP_RATE_PER_HR))
+	salary=$(($EMPLOYEE_HOURS*$EMPLOYEE_RATE_PER_HOUR))
 else
 	salary=0;
 fi
