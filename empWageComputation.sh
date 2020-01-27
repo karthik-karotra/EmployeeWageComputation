@@ -15,15 +15,15 @@ totalWorkingDays=0;
 
 function getWorkingHours() {
 	case $1 in
-   	$IS_FULL_TIME )
-      	employeeHours=8
-         ;;
-      $IS_PART_TIME )
-         employeeHours=4
-         ;;
-      * )
-         employeeHours=0
-         ;;
+		$IS_FULL_TIME )
+			employeeHours=8
+			;;
+		$IS_PART_TIME )
+			employeeHours=4
+			;;
+		* )
+			employeeHours=0
+			;;
 	esac
 	echo $employeeHours
 }
